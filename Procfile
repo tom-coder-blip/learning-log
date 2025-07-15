@@ -1,1 +1,1 @@
-web: gunicorn ll_project.wsgi:application
+web: gunicorn learning_log.wsgi:application
