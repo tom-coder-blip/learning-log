@@ -1,0 +1,28 @@
+<!-- This is the home page. It exteds base.html and defines content for the main section. -->
+
+{% extends 'learning_logs/base.html' %}
+
+{% block page_header %}
+  <!-- Jumbotron-style section for the homepage -->
+  <div class="p-3 mb-4 bg-light border rounded-3">
+    <div class="container-fluid py-4">
+      
+      <!-- Main heading for the homepage -->
+      <h1 class="display-3">Track your learning.</h1>
+
+      <!-- Short description of Learning Log -->
+      <p class="lead">
+        Make your own Learning Log, and keep a list of the topics you're learning about.
+        Whenever you learn something new about a topic, make an entry summarizing what you've learned.
+      </p>
+
+      <!-- Call-to-action button for registration -->
+      {% if not user.is_authenticated %}
+        <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">
+          Register &raquo;
+        </a>
+      {% endif %}
+
+    </div> <!-- Closes container-fluid -->
+  </div> <!-- Closes jumbotron section -->
+{% endblock page_header %}

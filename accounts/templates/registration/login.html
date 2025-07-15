@@ -1,0 +1,17 @@
+{% extends 'learning_logs/base.html' %}
+
+{% load django_bootstrap5 %}  <!-- Load Bootstrap for form styling -->
+
+{% block page_header %}
+  <h2>Log in to your account.</h2>  <!-- Page title for the login page -->
+{% endblock page_header %}
+
+{% block content %}
+  <form action="{% url 'accounts:login' %}" method='post'>
+    {% csrf_token %}  <!-- Security token to prevent cross-site request forgery -->
+
+    {% bootstrap_form form %}  <!-- Render the login form with Bootstrap styling -->
+
+    {% bootstrap_button button_type="submit" content="Log in" %}  <!-- Styled login button -->
+  </form>
+{% endblock content %}

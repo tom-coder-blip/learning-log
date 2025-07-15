@@ -1,0 +1,16 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  <a href="{% url 'learning_logs:topic' topic.id %}"
+         class="btn btn-primary"
+         style="background-color: #57588a; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-size: 1.1em; text-decoration: none;">
+        &larr; Back to Topic: {{ topic.text }}
+      </a>
+  <p>Edit entry:</p>
+
+  <form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button name="submit" class="btn btn-primary" style="background-color: #007bff; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-size: 1.05em;">Save Changes</button>
+  </form>
+{% endblock content %}

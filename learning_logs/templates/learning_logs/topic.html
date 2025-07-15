@@ -1,0 +1,45 @@
+<!-- This template displays all entries for a selected topic -->
+
+{% extends 'learning_logs/base.html' %}
+
+{% block page_header %}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <h1>{{ topic.text }}</h1>
+  <a href="{% url 'learning_logs:delete_topic' topic.id %}"
+     class="btn btn-danger"
+     style="background-color: #dc3545; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-size: 1.1em; text-decoration: none;">
+    Delete Topic
+  </a>
+</div>
+{% endblock page_header %}
+
+{% block content %}
+
+<div class="mb-4">
+  <a href="{% url 'learning_logs:new_entry' topic.id %}"
+     class="btn btn-success"
+     style="background-color: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-size: 1.1em; text-decoration: none;">
+    + Add New Entry
+  </a>
+</div>
+
+{% for entry in entries %}
+<div class="card mb-3">
+  <!-- Card header with timestamp and edit/delete buttons -->
+  <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <span>{{ entry.date_added|date:'M d, Y H:i' }}</span>
+    <div style="display: flex; gap: 8px;">
+      <a href="{% url 'learning_logs:edit_entry' entry.id %}"
+         class="btn btn-secondary" style="background-color: #6c757d; color: white; padding: 4px 12px; border-radius: 4px; text-decoration: none; border: none; font-size: 0.9em;">Edit</a>
+      <a href="{% url 'learning_logs:delete_entry' entry.id %}"
+         class="btn btn-danger" style="background-color: #dc3545; color: white; padding: 4px 12px; border-radius: 4px; text-decoration: none; border: none; font-size: 0.9em; margin-left: auto;">Delete</a>
+    </div>
+  </div>
+  <!-- Card body with entry text -->
+  <div class="card-body">{{ entry.text|linebreaks }}</div>
+</div>
+{% empty %}
+<p>There are no entries for this topic yet.</p>
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  <div class="card shadow-sm" style="max-width: 500px; margin: 30px auto; padding: 24px;">
+    <h3 class="card-title mb-3">Add a New Topic</h3>
+    <form action="{% url 'learning_logs:new_topic' %}" method="post">
+      {% csrf_token %}
+      <div class="mb-3">{{ form.as_div }}</div>
+      <button name="submit" class="btn btn-success" style="background-color: #28a745; color: white; border: none;">Add Topic</button>
+    </form>
+  </div>
+{% endblock content %}
